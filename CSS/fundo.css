@@ -1,0 +1,18 @@
+body {
+    background-color: #121212;
+    color: #ffffff;
+    line-height: 1.6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#inicio {
+    text-align: center;
+    padding-top: 40px;
+}
+
+.fundo img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 2px solid #333333;
+}

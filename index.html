@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obsolescência Programada e Lixo Eletrônico</title>
+    
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./CSS/fundo.css">
+    <link rel="stylesheet" href="./CSS/navbar.css">
+    <link rel="stylesheet" href="./CSS/texto.css">
+    <link rel="stylesheet" href="./CSS/imagens.css">
+    <link rel="stylesheet" href="./CSS/jogo.css">
+</head>
+<body> 
+    <header>
+        <nav>
+            <ul class="lista">
+                <li class="list"><a href="#inicio">Início</a></li>
+                <li class="list"><a href="#apresentacao">Introdução</a></li>
+                <li class="list"><a href="#tipos">Tipos</a></li>
+                <li class="list"><a href="#jogo">Desafio</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio">
+            <div class="fundo">
+                <img class="medida" src="./IMG/img1.png" alt="Banner principal">
+            </div>
+        </section>
+
+        <section id="apresentacao">
+            <div class="titulo-container">
+                <h1 class="titulo">Obsolescência Programada</h1>
+            </div>
+            
+            <div class="container-apresentacao">
+                <div class="imagem-destaque">
+                    <img class="conteudo" src="./IMG/pw-img.jpg" alt="Exemplo de descarte">
+                    <p class="texto-imagem">EXEMPLO CLÁSSICO DE DESCARTE</p>
+                </div>
+                
+                <ul class="lista-info">
+                    <li>
+                        <strong>Redução da vida útil:</strong> Os produtos são projetados para durar menos tempo do que poderiam tecnologicamente.
+                    </li>
+                    <li>
+                        <strong>Aumento dos lucros:</strong> A substituição frequente mantém as vendas e os lucros das empresas.
+                    </li>
+                    <li>
+                        <strong>Impactos ambientais:</strong> O descarte constante de produtos aumenta a quantidade de lixo eletrônico e o consumo de recursos naturais.
+                    </li>
+                </ul>
+            </div>
+        </section>
+            <br>
+            <br>
+            <br>
+        <section id="tipos">
+            <div class="titulo-container">
+                <h2 class="titulo">Formas de Obsolescência</h2>
+            </div>
+            <p class="texto-carrosel">A obsolescência programada aparece de várias maneiras na vida de consumo, tocando a durabilidade física e a usabilidade dos produtos. Em termos técnicos, a empresa faz o produto com materiais frágeis ou programa o falhar depois de tempo ou uso. Em obsolescência funcional ou sistêmica, o aparelho fica sem uso porque não é compatível com novas atualizações de software. Além disso, há a obsolescência estética, quando o design é rapidamente substituído por novas tendências, levando o consumidor a desejar trocar o produto mesmo que ainda funcione. Esse mecanismo incentiva o consumo contínuo e fortalece o ciclo de descarte. Como consequência, aumenta o impacto ambiental, já que muitos produtos descartados não são reciclados adequadamente. Por fim, o consumidor acaba preso em um sistema que valoriza mais a novidade do que a durabilidade, reforçando a lógica de mercado baseada na reposição constante.
+                </p>
+            
+            <div class="carrosel">
+                <div class="group">
+                    <div class="card">Bateria Colada</div>
+                    <div class="card">Sem Peças</div>
+                    <div class="card">Sem Updates</div>
+                    <div class="card">Lentidão</div>
+                    <div class="card">Tela Frágil</div>
+                    <div class="card">Conector Novo</div>
+                    <div class="card">Bateria Colada</div>
+                    <div class="card">Sem Peças</div>
+                    <div class="card">Sem Updates</div>
+                    <div class="card">Lentidão</div>
+                    <div class="card">Tela Frágil</div>
+                    <div class="card">Conector Novo</div>
+                </div>
+            </div>
+        </section>
+            <br>
+            <br>
+
+        <section id="jogo">
+            <div class="jogo-container">
+                <h2>Desafio do Smartphone</h2>
+                <p>Seu objetivo é gastar o mínimo possível e fazer seu aparelho durar.</p>
+                
+                <div class="status-box">
+                    <div>Ano: <span id="years" class="stat">1</span></div>
+                    <div>Saúde: <span id="health" class="stat">100%</span></div>
+                    <div>Gastos: <span id="expenses" class="stat">R$ 0</span></div>
+                </div>
+
+                <div id="phone">📱</div>
+                <p id="log">Seu smartphone é novo e funciona perfeitamente! O que você quer fazer no próximo ano?</p>
+                
+                <div class="choice-box">
+                    <button id="btn-keep" class="btn btn-keep" onclick="chooseOption('keep')">🔧 Manter Celular</button>
+                    <button id="btn-buy" class="btn btn-buy" onclick="chooseOption('buy')">🛍️ Comprar Novo</button>
+                </div>
+                
+                <div id="explanation" class="explanation">
+                    <h3>💡 Lição sobre Obsolescência</h3>
+                    <p id="explanation-text"></p>
+                    <button class="btn btn-keep" style="width: 100%; margin-top: 15px;" onclick="resetGame()">Jogar Novamente</button>
+                </div>
+            </div>
+        </section>
+    </main>
+        
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+    
+    const seletorElementos = 'section .titulo, section .imagem-destaque, section .lista-info li, section .texto-carrosel, section .carrosel, section .jogo-container';
+    const elementosParaAnimar = document.querySelectorAll(seletorElementos);
+
+   
+    elementosParaAnimar.forEach(el => el.classList.add('escondido'));
+
+   
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Adiciona a classe para animar entrando
+                entry.target.classList.add('visivel');
+            } else {
+               
+                entry.target.classList.remove('visivel');
+            }
+        });
+    }, {
+        threshold: 0.15 
+    });
+
+    elementosParaAnimar.forEach(el => observer.observe(el));
+
+    
+    const linksNav = document.querySelectorAll('nav a');
+    
+    linksNav.forEach(link => {
+        link.addEventListener('click', () => {
+            const targetId = link.getAttribute('href');
+            if (targetId && targetId.startsWith('#')) {
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    const elementosSecao = targetSection.querySelectorAll(seletorElementos);
+                    
+                   
+                    setTimeout(() => {
+                        elementosSecao.forEach(el => {
+                            el.classList.add('visivel');
+                        });
+                    }, 400);
+                }
+            }
+        });
+    });
+});
+
+
+
+
+
+
+
+
+
+        let year = 1;
+        let health = 100;
+        let expenses = 0;
+
+        const logEl = document.getElementById('log');
+        const yearsEl = document.getElementById('years');
+        const healthEl = document.getElementById('health');
+        const expensesEl = document.getElementById('expenses');
+        const phoneEl = document.getElementById('phone');
+        const btnKeep = document.getElementById('btn-keep');
+        const btnBuy = document.getElementById('btn-buy');
+        const expBox = document.getElementById('explanation');
+        const expText = document.getElementById('explanation-text');
+
+        const scenarios = {
+            2: {
+                problem: "O sistema atualizou sozinho e a bateria começou a descarregar muito rápido.",
+                keepLog: "Você decidiu manter! Pagou R$ 250 por uma bateria nova paralela. A saúde subiu um pouco, mas a lentidão continua.",
+                keepCost: 250,
+                keepHealthEffect: -20,
+                buyLog: "Você comprou um novo por R$ 2.000 porque não aguentava a bateria viciada.",
+                buyCost: 2000,
+                concept: "<strong>Obsolescência Funcional (Software):</strong> Fabricantes lançam atualizações pesadas que sabotam o desempenho do hardware antigo, forçando você a gastar com reparos ou comprar outro."
+            },
+            3: {
+                problem: "A tela quebrou. A assistência oficial cobra quase o preço de um celular novo para trocar.",
+                keepLog: "Você decidiu manter! Gastou R$ 900 na tela nova. Ficou caro e a tela não tem o mesmo brilho de antes.",
+                keepCost: 900,
+                keepHealthEffect: -30,
+                buyLog: "Você preferiu comprar outro por R$ 2.200, já que consertar o antigo era economicamente inviável.",
+                buyCost: 2200,
+                concept: "<strong>Inviabilidade de Reparo:</strong> Os produtos são desenhados para dificultar o conserto. Peças coladas, raras ou propositalmente caras fazem o consumidor desistir de consertar."
+            },
+            4: {
+                problem: "Seus aplicativos de banco e o WhatsApp pararam de funcionar porque exigem um sistema operacional mais novo que seu celular não recebe mais.",
+                keepLog: "Você insistiu em ficar com ele, mas agora tem um aparelho que liga, mas não roda nada útil. Virou um peso de papel.",
+                keepCost: 0,
+                keepHealthEffect: -50,
+                buyLog: "Sem conseguir usar os apps do dia a dia, você foi obrigado a gastar R$ 2.500 em um novo aparelho.",
+                buyCost: 2500,
+                concept: "<strong>Obsolescência Tecnológica/Sistêmica:</strong> Mesmo que o aparelho físico esteja intacto, o ecossistema digital corta o suporte para te obrigar a migrar para tecnologias mais recentes."
+            }
+        };
+
+        function chooseOption(choice) {
+            let nextYear = year + 1;
+            let currentScenario = scenarios[nextYear];
+
+            if (choice === 'keep') {
+                expenses += currentScenario.keepCost;
+                health += currentScenario.keepHealthEffect;
+                if (health < 0) health = 0;
+                logEl.innerHTML = `<strong>Resultado:</strong> ${currentScenario.keepLog}`;
+            } else if (choice === 'buy') {
+                expenses += currentScenario.buyCost;
+                health = 100;
+                logEl.innerHTML = `<strong>Resultado:</strong> ${currentScenario.buyLog}`;
+            }
+
+            year = nextYear;
+            yearsEl.innerText = year;
+            healthEl.innerText = health + "%";
+            expensesEl.innerText = `R$ ${expenses}`;
+
+            if (health > 70) phoneEl.innerText = "📱";
+            else if (health > 30) phoneEl.innerText = "🤕";
+            else phoneEl.innerText = "💀";
+
+            btnKeep.disabled = true;
+            btnBuy.disabled = true;
+
+            setTimeout(() => {
+                if (year < 4) {
+                    logEl.innerHTML += `<br><br><span class="highlight">Próximo problema (Ano ${year + 1}):</span> ${scenarios[year + 1].problem}`;
+                    btnKeep.disabled = false;
+                    btnBuy.disabled = false;
+                } else {
+                    endGame(currentScenario.concept);
+                }
+            }, 800);
+        }
+
+        function endGame(conceptText) {
+            btnKeep.disabled = true;
+            btnBuy.disabled = true;
+
+            let resumoFinal = `Você terminou o experimento no <strong>Ano 4</strong> com um gasto total de <span class="highlight">R$ ${expenses}</span>.<br><br>`;
+            
+            expText.innerHTML = resumoFinal + conceptText + "<br><br>Reparar deveria ser um direito simples e acessível, mas a indústria molda o mercado para o descarte constante.";
+            expBox.style.display = 'block';
+        }
+
+        function resetGame() {
+            year = 1;
+            health = 100;
+            expenses = 0;
+            yearsEl.innerText = year;
+            healthEl.innerText = health + "%";
+            expensesEl.innerText = "R$ 0";
+            phoneEl.innerText = "📱";
+            logEl.innerHTML = "Seu smartphone é novo e funciona perfeitamente! O que você quer fazer no próximo ano?";
+            btnKeep.disabled = false;
+            btnBuy.disabled = false;
+            expBox.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
